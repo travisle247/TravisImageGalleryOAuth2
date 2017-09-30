@@ -7,6 +7,8 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using TravisImageGallery.API.Entities;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TravisImageGallery.API
 {
@@ -14,12 +16,33 @@ namespace TravisImageGallery.API
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            var host = BuildWebHost(args);
+          
+            host.Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
+        public static IWebHost BuildWebHost(string[] args)
+        {
+            return WebHost.CreateDefaultBuilder()
+                     .ConfigureAppConfiguration(ConfigConfiguration)
+                     .ConfigureLogging(ConfigureLogger)
+                     .UseStartup<Startup>()
+                     .Build();
+        }
+
+        static void ConfigConfiguration(WebHostBuilderContext ctx, IConfigurationBuilder config)
+        {
+            config.SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddEnvironmentVariables();
+
+        }
+
+        static void ConfigureLogger(WebHostBuilderContext ctx, ILoggingBuilder logging)
+        {
+            logging.AddConfiguration(ctx.Configuration.GetSection("Logging"));
+            logging.AddConsole();
+            logging.AddDebug();
+        }
     }
 }

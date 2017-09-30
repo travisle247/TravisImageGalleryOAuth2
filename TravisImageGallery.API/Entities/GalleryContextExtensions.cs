@@ -7,7 +7,7 @@ namespace TravisImageGallery.API.Entities
 {
     public static class GalleryContextExtensions
     {
-        public static void EnsureSeedDataForContext(this GalleryContext context)
+        public static void Initialize(this GalleryContext context)
         {
             // first, clear the database.  This ensures we can always start 
             // fresh with each demo.  Not advised for production environments, obviously :-)

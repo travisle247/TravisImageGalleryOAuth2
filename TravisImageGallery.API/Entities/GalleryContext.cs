@@ -2,14 +2,15 @@
 
 
 namespace TravisImageGallery.API.Entities
-{     
-        public class GalleryContext : DbContext
+{
+    public class GalleryContext : DbContext
+    {
+        public GalleryContext(DbContextOptions<GalleryContext> options)
+           : base(options)
         {
-            public GalleryContext(DbContextOptions<GalleryContext> options)
-               : base(options)
-            {
-            }
-
-            public DbSet<Image> Images { get; set; }
+            Database.EnsureCreated();
         }
+
+        public DbSet<Image> Images { get; set; }
+    }
 }
