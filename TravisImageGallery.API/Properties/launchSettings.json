@@ -1,9 +1,9 @@
-﻿{
+{
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:40764/",
+      "applicationUrl": "http://localhost:44244/",
       "sslPort": 0
     }
   },
@@ -11,17 +11,19 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
+      "launchUrl": "api/values",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "TravisImageGallery": {
+    "TravisImageGallery.API": {
       "commandName": "Project",
       "launchBrowser": true,
+      "launchUrl": "api/values",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:40765"
+      "applicationUrl": "http://localhost:44245/"
     }
   }
 }
